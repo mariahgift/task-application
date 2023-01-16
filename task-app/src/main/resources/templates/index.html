@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Task CRUD Operation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container my-2">
+        <h1 class="mt-5 mb-4">Task List</h1>
+
+
+        <a th:href="@{/createTaskForm}" class="btn btn-primary btn-sm mb-3"> Create a Task</a>
+        <table class="table table-striped table-responsive-md">
+            <thead>
+            <tr class="text-center">
+                <th>Title</th>
+                <th>Description</th>
+                <th>Completed</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody class="text-center">
+            <tr th:each="task: ${taskList}">
+                <td th:text="${task.title}"></td>
+                <td th:text="${task.description}"></td>
+                <td th:text="${task.completed}"></td>
+                <td> <a th:href="@{/updateTaskForm/{id}(id=${task.id})}" class="btn btn-primary">Update</a>
+                    <a th:href="@{/deleteTask/{id}(id=${task.id})}" class="btn btn-danger">Delete</a>
+                </td>
+<!--                <td>  </td>-->
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</body>
+</html>
